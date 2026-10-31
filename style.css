@@ -1,0 +1,109 @@
+:root {
+    --blue: #2c5f8a;
+    --text: :#26323f;
+    --paper: #f5f7fa;
+}
+
+body {
+    font-family: "Noto Sans Thai", sans-serif;
+    color: var(--text);
+    background:  #fff;
+    line-height: 1.7;
+}
+
+.profile {
+    background: #fff;
+    border-bottom: 4px solid #FFC72C;
+    padding: 3rem 0;
+}
+
+.profile-photo {
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #FA4616;
+    border-color: #FA4616;
+    box-shadow: 0 0 0 3px #FFC72C;
+    background:#fff
+}
+
+.profile-name {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.profile-sub {
+    color: black;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.profile-info {
+    grid-template-columns: max-content 1fr;
+    gap: .25rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.profile-info dt {
+    color: #7B8189;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 1.5rem;
+    padding: .75rem 0;
+    background: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.filter-bar label {
+    padding: .4rem 1.25rem;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: #fff;
+    color: #1b2a41;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+}
+
+.filter-bar label:hover {
+    border-color: red;
+}
+
+#cat-all:check ~ .filter-bar label[for="cat-all"],
+#cat-media:checked ~ .filter-bar label[for="cat-media"],
+#cat-coding:checked ~ .filter-bar label[for="cat-coding"]
+
+
+#cat-all:focus-visible ~ .filter-bar label[for="cat-all"],
+#cat-media:focus-visible ~ .filter-bar label[for="cat-media"],
+#cat-coding:focus-visible ~ .filter-bar label[for="cat-coding"], {
+     outline: 3px solid #2c5f8a;
+     outline-offset: 2px;
+}
