@@ -1,67 +1,303 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- DOCTYPE: บอกเบราว์เซอร์ว่านี่คือ HTML5 ต้องอยู่บรรทัดแรกสุดของไฟล์เสมอ -->
+
+<!-- html: แท็กครอบทั้งหน้า | lang="th" บอกว่าเนื้อหาเป็นภาษาไทย -->
+<html lang="th">
+
+<!-- =====================================================
+     HEAD: ข้อมูลเบื้องหลัง ไม่แสดงบนหน้าเว็บ
+     ใช้บอกเบราว์เซอร์ว่าต้องโหลดอะไรบ้าง
+     ===================================================== -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODEfolio | Mungkorn</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <!-- charset: ตั้งรหัสตัวอักษรให้อ่านภาษาไทยได้ ถ้าลืมใส่ตัวหนังสือจะเพี้ยน -->
+  <meta charset="UTF-8">
+
+  <!-- viewport: ทำให้มือถือแสดงเว็บตามขนาดจอจริง (หัวใจของ responsive)
+       ถ้าไม่มีบรรทัดนี้ มือถือจะย่อหน้าเว็บจากจอคอมมาแสดงแทน -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- title: ข้อความบนแท็บเบราว์เซอร์ และชื่อที่ Google แสดง
+       อย่าลืมแก้เป็นชื่อจริงของตัวเอง -->
+  <title>Portfolio | นายกันตพัฒน์ ทองแก้ว</title>
+
+  <!-- description: คำอธิบายเว็บสั้นๆ ที่ Google แสดงใต้ชื่อเว็บ -->
+  <meta name="description" content="พอร์ตโฟลิโอของ นายกันตพัฒน์ ทองแก้ว นักเรียนชั้น ม.6 โรงเรียนเทพศิรินทร์สมุทรปราการ สนใจศึกษาต่อด้านคอมพิวเตอร์">
+
+  <!-- theme-color: สีแถบด้านบนของเบราว์เซอร์บนมือถือ (ใช้สีน้ำเงินเข้มเดียวกับเว็บ) -->
+  <meta name="theme-color" content="#1b2a41">
+
+  <!-- icon: ไอคอนเล็กบนแท็บเบราว์เซอร์ ตรงนี้ใช้อีโมจิ 🎓 แทนไฟล์รูป
+       อยากเปลี่ยน ให้แก้ตัวอีโมจิในโค้ดบรรทัดเดียวกันนี้ -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎓%3C/text%3E%3C/svg%3E">
+
+  <!-- โหลดฟอนต์ Noto Sans Thai จาก Google (น้ำหนัก 400 ปกติ / 500 กลาง / 700 หนา) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- โหลด CSS สำเร็จรูปของ Bootstrap (ระบบตาราง 12 ช่อง และคลาสสำเร็จรูป) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- โหลด CSS ของเราเอง ต้องอยู่หลัง Bootstrap เสมอ ไม่งั้นแก้สีหรือสไตล์แล้วไม่ติด -->
+  <link href="style.css" rel="stylesheet">
 </head>
+
+<!-- BODY: ทุกอย่างที่เห็นบนหน้าเว็บอยู่ในนี้ -->
 <body>
-    <header class="profile">
-        <div class="container mmm">
-            <div class="row align-items-center g-4">
-                <div class="col-md-4 text-center">
-                    <img src="profile.jpg" alt="รูปโปรไฟล์" class="profile-photo">
-                </div>
-                <div class="col-md-8">
-                    <h1 class="profile-name">กันตพัฒน์ ทองแก้ว</h1>
 
-                    <p class="profile-sub">นักเรียนชั้นมัธยมศึกษาปีที่ 6</p>
+  <!-- =====================================================
+       ส่วนที่ 1: โปรไฟล์ (รูปซ้าย ข้อมูลขวา)
+       ===================================================== -->
 
-                    <dl class="profile-info">
-                        <dt>โรงเรียน</dt><dd>โรงเรียนเทพศิรินทร์สมุทรปราการ</dd>
-                    </dl>
+  <!-- header: ส่วนหัวของหน้า | class="profile" ตั้งชื่อเพื่อให้ CSS จับไปแต่งได้ -->
+  <header class="profile">
 
+    <!-- container (Bootstrap): กล่องจำกัดความกว้าง จัดให้อยู่กลางจอ -->
+    <div class="container">
 
-                    <p class="profile-about">Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
+      <!-- row (Bootstrap): แถวสำหรับวางคอลัมน์เรียงข้างกัน
+           g-4 = เว้นช่องว่างระหว่างคอลัมน์ | align-items-center = จัดให้อยู่กลางแนวตั้ง -->
+      <div class="row align-items-center g-4">
+
+        <!-- col-md-4: คอลัมน์กว้าง 4 จาก 12 ส่วน (ซ้าย) บนจอกลางขึ้นไป
+             ถ้าจอแคบกว่า 768 px จะเต็มแถวและซ้อนอยู่บน (นี่คือ responsive)
+             text-center = จัดรูปให้อยู่ตรงกลาง -->
+        <div class="col-md-4 text-center">
+          <!-- img: แสดงรูป | src = ที่อยู่ไฟล์ (ชื่อต้องตรงทุกตัวอักษร)
+               alt = ข้อความบรรยายรูป ใช้เมื่อรูปไม่ขึ้นหรือสำหรับโปรแกรมอ่านหน้าจอ -->
+          <img src="profile.jpg" alt="ภาพถ่ายของ ชื่อ นามสกุล" class="profile-photo">
         </div>
-    </header>
 
-    <main>
-        <section class="container works" id="works">
-            <input type="radio" name="cat-all" class="visually-hidden" checked>
-            <input type="radio" name="cat-media" class="visually-hidden">
-            <input type="radio" name="cat-coding" class="visually-hidden">
+        <!-- col-md-8: คอลัมน์กว้าง 8 จาก 12 ส่วน (ขวา) รวมกับ 4 ด้านบนได้ 12 พอดี -->
+        <div class="col-md-8">
+          <!-- h1: หัวข้อใหญ่สุดของหน้า มีได้อันเดียว ใช้เป็นชื่อเจ้าของพอร์ต -->
+          <h1 class="profile-name">นายกันตพัฒน์ ทองแก้ว</h1>
 
-            <div class="filter-bar" role="group" aria-label="เลือกหมวดผลงาน">
-                <label for="cat-all">ทั้งหมด</label>
-                <label for="cat-media">Media</label>
-                <label for="cat-coding">Media</label>
+          <!-- p: ย่อหน้าข้อความ -->
+          <p class="profile-sub">นักเรียนชั้นมัธยมศึกษาปีที่ 6</p>
+
+          <!-- dl / dt / dd: รายการแบบ "หัวข้อ – ค่า"
+               dl = ตัวครอบรายการ | dt = หัวข้อ | dd = ค่าของหัวข้อนั้น -->
+          <dl class="profile-info">
+            <dt>โรงเรียน</dt><dd>โรงเรียนเทพศิรินทร์สมุทรปราการ</dd>
+            <dt>อายุ</dt><dd>18 ปี</dd>
+            <dt>สนใจศึกษาต่อ</dt><dd>คณะวิศวกรรมศาสตร์ สาขาคอมพิวเตอร์</dd>
+          </dl>
+
+          <p class="profile-about">ผมเป็นคนที่สนใจด้านเทคโนโลยีคอมพิวเตอร์ การเขียนโปรแกรม และการพัฒนานวัตกรรมใหม่ ๆ โดยมีจุดเด่นคือความตั้งใจเรียนรู้ ชอบคิดวิเคราะห์ และแก้ไขปัญหาอย่างเป็นระบบ ผมจึงอยากเข้าศึกษาต่อในสาขาวิศวกรรมคอมพิวเตอร์ เพื่อนำความรู้ไปพัฒนาทักษะและสร้างเทคโนโลยีที่เป็นประโยชน์ในอนาคต</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- main: เนื้อหาหลักของหน้า บอกว่า "ส่วนนี้คือสาระของหน้า"
+       ใช้ได้อันเดียวต่อหน้า และไม่ครอบ header / footer
+       ที่นี่ครอบ 3 ส่วนเนื้อหา: เกี่ยวกับฉัน + ผลงาน + รางวัลและกิจกรรม
+       (ประโยชน์: โปรแกรมอ่านหน้าจอมีปุ่มลัด "ข้ามไปเนื้อหาหลัก" ที่ใช้แท็กนี้) -->
+  <main>
+
+    <!-- =====================================================
+         เกี่ยวกับฉัน / เป้าหมาย
+         ===================================================== -->
+
+    <!-- section: กลุ่มเนื้อหาหนึ่งเรื่อง
+         id="about" = ชื่อเฉพาะของส่วนนี้ ไว้ทำลิงก์กระโดดมาที่นี่ได้ (href="#about") -->
+    <section class="container about" id="about">
+      <!-- h2: หัวข้อรอง (เล็กกว่า h1) ใช้เป็นชื่อของแต่ละส่วนในหน้า -->
+      <h2 class="section-title">เกี่ยวกับฉัน</h2>
+      <p class="about-text">
+        ผมเริ่มสนใจด้านวิศวกรรมคอมพิวเตอร์จากความชอบในเทคโนโลยีและการทำงานของคอมพิวเตอร์ รวมถึงการเขียนโปรแกรมเพื่อแก้ไขปัญหาต่าง ๆ ผมอยากเรียนสาขานี้เพื่อพัฒนาความรู้และทักษะด้านการเขียนโปรแกรม การออกแบบระบบ และการสร้างนวัตกรรมใหม่ ๆ ผลงานที่ผมได้ทำช่วยให้ผมได้ฝึกคิดวิเคราะห์ แก้ปัญหา และต่อยอดความสนใจด้านเทคโนโลยี หลังเรียนจบ ผมตั้งใจที่จะทำงานด้านวิศวกรรมซอฟต์แวร์หรือพัฒนาระบบคอมพิวเตอร์ เพื่อนำความรู้ไปสร้างประโยชน์ให้กับสังคม
+      </p>
+    </section>
+
+    <!-- =====================================================
+         ส่วนที่ 2: ผลงาน (เรียงลงมา สื่อซ้าย ข้อมูลขวา)
+         ===================================================== -->
+
+    <!-- section id="works": ส่วนผลงาน อยู่ใน main เหมือนส่วนอื่นๆ
+         class="container works" = จัดให้อยู่กลางจอ (Bootstrap) + ให้ CSS แต่ง (.works) -->
+    <section class="container works" id="works">
+      <h2 class="section-title">ผลงาน</h2>
+
+      <!-- ---------- ปุ่มเลือกหมวด (ทำด้วย HTML + CSS ล้วน ไม่ใช้ JS) ----------
+           หลักการ: ใช้ปุ่มเรดิโอ (เลือกได้ทีละอัน) ที่ซ่อนไว้
+           แล้วให้ป้ายชื่อ (label) ทำหน้าที่เป็นปุ่มที่เรากด
+           CSS จะดูว่าปุ่มไหนถูกเลือก แล้วซ่อนการ์ดที่ไม่ตรงหมวด
+
+           กฎสำคัญ: ปุ่มเรดิโอต้องอยู่ก่อนแถบปุ่ม (.filter-bar) และรายการผลงาน (.work-list)
+           เพราะ CSS ใช้เครื่องหมาย ~ ซึ่งมองได้เฉพาะ "สิ่งที่อยู่ถัดลงไป" -->
+
+      <!-- type="radio" = ปุ่มเลือกได้ทีละอัน | name="cat" เหมือนกันทั้ง 3 ตัว จึงเลือกพร้อมกันไม่ได้
+           id = ชื่อเฉพาะ ใช้ให้ label ชี้มาหา | checked = เลือกไว้ตั้งแต่เปิดหน้า
+           visually-hidden (Bootstrap) = ซ่อนจากสายตา แต่ยังกดด้วยคีย์บอร์ดได้ -->
+      <input type="radio" name="cat" id="cat-all" class="visually-hidden" checked>
+      <input type="radio" name="cat" id="cat-coding" class="visually-hidden">
+      <input type="radio" name="cat" id="cat-media" class="visually-hidden">
+
+      <!-- role="group" + aria-label: บอกโปรแกรมอ่านหน้าจอว่านี่คือกลุ่มปุ่ม ชื่อว่า "เลือกหมวดผลงาน" -->
+      <div class="filter-bar" role="group" aria-label="เลือกหมวดผลงาน">
+        <!-- label for="..." : พอกดป้ายนี้ จะไปติ๊กปุ่มเรดิโอที่มี id ตรงกับค่าใน for -->
+        <label for="cat-all">ทั้งหมด</label>
+        <label for="cat-coding">Coding</label>
+        <label for="cat-media">Media</label>
+      </div>
+
+      <!-- work-list: กล่องรวมการ์ดผลงานทั้งหมด -->
+      <div class="work-list">
+
+        <!-- ---------- ผลงานแบบรูปภาพ ----------
+             article: เนื้อหาหนึ่งชิ้นที่แยกเป็นเรื่องของตัวเองได้ (การ์ดผลงานหนึ่งใบ)
+             data-category: ป้ายที่เราตั้งเอง ("coding" หรือ "media")
+             ต้องสะกดตรงกับ id ของปุ่มเรดิโอ (cat-coding / cat-media) ไม่งั้นการ์ดจะหายตอนกดแท็บ -->
+        <article class="work" data-category="coding">
+          <!-- row: แถวของคอลัมน์ ประกาศว่า div นี้คือ "แถว" ที่จะวางคอลัมน์ (col-*) เรียงข้างกันอยู่ข้างใน ลูกของ row ควรเป็น col-* เสมอ 
+           ไม่เช่นนั้นการจัดวางจะเพี้ยน Bootstrap แบ่งแถวเป็น 12 ช่อง เช่น col-md-4 กับ col-md-8 รวมกันได้ 12 พอดี g-4: ช่องว่างระหว่างคอลัมน์
+          ตัว g ย่อมาจาก gutter แปลว่าช่องว่างระหว่างคอลัมน์ เลข 4 คือระดับขนาดของ Bootstrap -->
+          <div class="row g-4 align-items-center">
+            <!-- col-lg-7: คอลัมน์กว้าง 7 ส่วน (ซ้าย ใส่รูป) บนจอใหญ่ขึ้นไป (992 px)
+                 จอเล็กกว่านั้นจะซ้อนกัน รูปอยู่บน ข้อความอยู่ล่าง -->
+            <div class="col-lg-7">
+              <img class="work-media" src="camp1.jpg" alt="ตัวอย่างผลงานที่ 1">
             </div>
-
-            <div>
-                <article class="work" data-category="Media">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-lg-7">
-                           <img src="camp1.jpg" alt="" class="work-media"> 
-                        </div>
-
-                        <div class="col-lg-5">
-                            <span class="work-tag">Coding</span>
-                            <h3 class="work-little">ชื่อผลงานชิ้นที่ 1</h3>
-                            <p class="work-desc">Lorem ipsum dolor.</p>
-                            <a href="kmutt.jpg" class="btn-detail"></a>
-                        </div>
-                    </div>
-                </article>
+            <!-- col-lg-5: คอลัมน์กว้าง 5 ส่วน (ขวา ใส่ข้อความ) รวมกับ 7 ได้ 12 พอดี -->
+            <div class="col-lg-5">
+              <!-- span: ข้อความเล็กๆ ในบรรทัดเดียวกัน ที่นี่ใช้ทำป้ายบอกหมวด -->
+              <span class="work-tag">Coding</span>
+              <!-- h3: หัวข้อย่อยลงมาจาก h2 ใช้เป็นชื่อผลงาน -->
+              <h3 class="work-title">เข้าร่วมกิจกรรม Engineering Open House เปิดบ้านวิศวะ พระจอมเกล้าฯ</h3>
+              <p class="work-desc">อธิบายผลงาน:  เข้าร่วมกิจกรรม Engineering Open House ณ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี เมื่อวันที่ 8 สิงหาคม 2569 โดยมีบทบาทเป็นผู้เข้าร่วมกิจกรรมเพื่อเรียนรู้เกี่ยวกับคณะวิศวกรรมศาสตร์และแนวทางการศึกษาต่อด้านวิศวกรรม ได้รับเกียรติบัตรจากการเข้าร่วมกิจกรรม ซึ่งช่วยให้ผมได้เปิดมุมมองเกี่ยวกับการเรียนด้านวิศวกรรม และสร้างแรงบันดาลใจในการศึกษาต่อสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <!-- ปุ่มไปหน้าแสดงผลงานชิ้นนี้
+                   ใช้ a (ลิงก์) แต่แต่งหน้าตาให้เป็นปุ่มด้วยคลาส btn-detail
+                   เพราะการ "พาไปหน้าอื่น" ควรใช้ a ไม่ใช่ button
+                   href = ชื่อไฟล์ของหน้านั้น (work-1.html อยู่โฟลเดอร์เดียวกับ index.html) -->
+              <a class="btn-detail" href="kmutt.jpg">ดูรายละเอียด →</a>
             </div>
-        </section>
-    </main>
+          </div>
+        </article>
+
+        <!-- ---------- ผลงานแบบคลิปวิดีโอ ---------- -->
+        <article class="work" data-category="media">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <!-- video: เล่นคลิปในหน้าเว็บ
+                   src = ที่อยู่ไฟล์คลิป | poster = ภาพปกก่อนกดเล่น
+                   controls = แสดงปุ่มเล่น/หยุด/เสียง
+                   preload="metadata" = โหลดแค่ข้อมูลคลิปก่อน (ไม่โหลดทั้งไฟล์) ช่วยให้หน้าเปิดเร็ว
+                   playsinline = เล่นในหน้าเว็บบนมือถือ ไม่เด้งเต็มจอ -->
+              <video class="work-media is-video" src="https://drive.google.com/file/d/1LFMfmPyHGwA3-5F0ILBB9yHol0JqeqFf/view?usp=drive_link" poster="mv.jpg"></video>
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Media</span>
+              <h3 class="work-title">การจัดทำมิวสิกวิดีโอ (MV) เพลง จากกันโดยสมบูรณ์(คลิป)</h3>
+              <p class="work-desc">จัดทำมิวสิกวิดีโอเพลง “จากกันโดยสมบูรณ์” เพื่อส่งเป็นผลงานประกอบการเรียนในชั้นเรียน โดยมีส่วนร่วมในการวางแผนและสร้างสรรค์ผลงานผ่านการถ่ายทำและตัดต่อวิดีโอ ทำให้ได้ฝึกทักษะการใช้เทคโนโลยีดิจิทัล ความคิดสร้างสรรค์ การทำงานร่วมกับผู้อื่น และการบริหารเวลาให้ผลงานสำเร็จตามที่ได้รับมอบหมาย</p>
+              <a class="btn-detail" href="https://drive.google.com/file/d/1LFMfmPyHGwA3-5F0ILBB9yHol0JqeqFf/view?usp=drive_link">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work" data-category="coding">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <img class="work-media" src="วช.jpg" alt="ตัวอย่างผลงานที่ 3">
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Coding</span>
+              <h3 class="work-title">SMART DRONE GUI WITH PYTHON & TKINTER</h3>
+              <p class="work-desc">ข้าร่วมการอบรมกิจกรรมเสริมสร้างการเรียนรู้และประดิษฐ์นวัตกรรม เรื่อง SMART DRONE GUI WITH PYTHON & TKINTER เมื่อวันที่ 4 กันยายน 2569 ณ ศูนย์พัฒนา สิ่งประดิษฐ์เพื่ออนาคตและความยั่งยืน วช. โดยได้เรียนรู้เกี่ยวกับการเขียนโปรแกรม Python การสร้างส่วนติดต่อผู้ใช้ด้วย Tkinter และการประยุกต์ใช้เทคโนโลยีกับระบบโดรน ได้รับเกียรติบัตรจากการเข้าร่วมอบรม ซึ่งช่วยพัฒนาทักษะด้านการเขียนโปรแกรม การคิดวิเคราะห์ และการประยุกต์ใช้เทคโนโลยี อันเป็นพื้นฐานสำคัญสำหรับการศึกษาต่อในสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <a class="btn-detail" href="34903.jpg">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work" data-category="coding">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <img class="work-media" src="BSD รูป.jpg" alt="ตัวอย่างผลงานที่ 4">
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Coding</span>
+              <h3 class="work-title">ผ่านการอบรมหลักสูตร TechStudent จาก BSD Education</h3>
+              <p class="work-desc">สำเร็จหลักสูตร TechStudent จาก BSD Education เมื่อวันที่ 15 กรกฎาคม 2569 โดยได้รับเกียรติบัตรรับรองการผ่านหลักสูตร ซึ่งช่วยพัฒนาความรู้และทักษะด้านเทคโนโลยีดิจิทัล การคิดอย่างเป็นระบบ และการประยุกต์ใช้เทคโนโลยีในการสร้างสรรค์ผลงาน เพื่อนำไปต่อยอดในการศึกษาสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <a class="btn-detail" href="BSD รูป.jpg">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work" data-category="coding">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <img class="work-media" src="ศิลปากร ดีเด่น.pdf.png" alt="ตัวอย่างผลงานที่ 5">
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Coding</span>
+              <h3 class="work-title">ได้รับรางวัลระดับดีเด่น การแข่งขันวิชาการด้านวิศวกรรมไฟฟ้า มหาวิทยาลัยศิลปากร</h3>
+              <p class="work-desc">ได้รับเกียรติบัตรระดับดีเด่น จากกิจกรรมการแข่งขันทางวิชาการ สาขาวิศวกรรมอิเล็กทรอนิกส์และระบบคอมพิวเตอร์ และสาขาวิศวกรรมไฟฟ้าสื่อสาร จัดโดยคณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยศิลปากร เมื่อวันที่ 23–24 ตุลาคม 2569 ผลงานนี้สะท้อนถึงความตั้งใจในการเรียนรู้ด้านวิศวกรรม การพัฒนาความรู้ทางเทคนิค และความมุ่งมั่นในการศึกษาต่อสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <a class="btn-detail" href="ศิลปากร ดีเด่น.pdf.png">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work" data-category="coding">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <img class="work-media" src="วิศวะคอม เยาว์.png" alt="ตัวอย่างผลงานที่ 6">
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Coding</span>
+              <h3 class="work-title">เข้าร่วมค่ายวิศวกรรมคอมพิวเตอร์ รุ่นเยาว์ ครั้งที่ 18 (ONCES Thailand)</h3>
+              <p class="work-desc">เข้าร่วมค่ายวิศวกรรมคอมพิวเตอร์ รุ่นเยาว์ ครั้งที่ 18 จัดโดย ONCES Thailand เมื่อวันที่ 1 สิงหาคม 2569 โดยได้เรียนรู้พื้นฐานการเขียนโปรแกรม (Basic Coding) และการออกแบบแอปพลิเคชัน ทำให้ได้ฝึกทักษะการคิดอย่างเป็นระบบ การแก้ปัญหา และการประยุกต์ใช้เทคโนโลยี ซึ่งเป็นพื้นฐานสำคัญสำหรับการศึกษาต่อในสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <a class="btn-detail" href="34905.jpg">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work" data-category="coding">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+              <img class="work-media" src="วัยรุ่นมีของ.png" alt="ตัวอย่างผลงานที่ 7">
+            </div>
+            <div class="col-lg-5">
+              <span class="work-tag">Coding</span>
+              <h3 class="work-title">เข้าร่วมโครงการ Show Me U Got Project: All-Engineering Bootcamp 2026</h3>
+              <p class="work-desc">ผ่านการเข้าร่วมโครงการ All-Engineering Bootcamp 2026 ณ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง ระหว่างวันที่ 22–23 สิงหาคม 2569 โดยได้เรียนรู้และทำกิจกรรมเกี่ยวกับศาสตร์ทางวิศวกรรม ช่วยเปิดมุมมองเกี่ยวกับการเรียนต่อด้านวิศวกรรม ฝึกทักษะการคิดวิเคราะห์และการแก้ปัญหา รวมถึงสร้างแรงบันดาลใจในการศึกษาต่อสาขาวิศวกรรมคอมพิวเตอร์</p>
+              <a class="btn-detail" href="34906.jpg">ดูรายละเอียด →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- อยากเพิ่มผลงาน: คัดลอกบล็อก article ทั้งก้อนมาวางตรงนี้ แล้วแก้รูป ข้อความ และ data-category -->
+      </div>
+    </section>
+
+    <!-- =====================================================
+         รางวัลและกิจกรรม (เส้นเวลา เรียงจากใหม่ไปเก่า)
+         ===================================================== -->
+    <section class="container awards" id="awards">
+      <h2 class="section-title">รางวัลและกิจกรรม</h2>
+
+      <!-- ul: รายการแบบมีจุดนำหน้า (ไม่เรียงเลข) | CSS จะเอาจุดออกแล้วทำเป็นเส้นเวลาแทน -->
+      <ul class="timeline">
+        <!-- li: รายการแต่ละข้อใน ul -->
+        <li>
+          <!-- span ที่นี่ใช้ครอบตัวเลขปี เพื่อให้ CSS ทำเป็นตัวหนาสีน้ำเงิน -->
+          <span class="timeline-year">11 กรกฎาคม 2569</span>
+          เข้าร่วมกิจกรรมการแข่งขันทางวิชาการ มหาวิทยาลัยศิลปากร ระดับดีมาก เข้าร่วมกิจกรรมการแข่งขันทางวิชาการด้านวิศวกรรมอิเล็กทรอนิกส์และระบบคอมพิวเตอร์ และวิศวกรรมไฟฟ้าสื่อสาร จัดโดยคณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม มหาวิทยาลัยศิลปากร เมื่อวันที่ 11 กรกฎาคม 2569 โดยได้รับผลการประเมินระดับดีมาก กิจกรรมนี้ช่วยพัฒนาความรู้ด้านวิศวกรรมและเสริมสร้างทักษะการคิดวิเคราะห์ เพื่อนำไปต่อยอดในการศึกษาสาขาวิศวกรรมคอมพิวเตอร์
+        </li>
+        <li>
+          <span class="timeline-year">18 มกราคม 2569</span>
+          เข้าร่วมการอบรมหลักสูตร Artificial Intelligence and its Application จำนวน 6 ชั่วโมง เมื่อวันที่ 18 มกราคม 2569 ณ มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา โดยได้เรียนรู้เกี่ยวกับปัญญาประดิษฐ์ (AI) และการประยุกต์ใช้ในด้านต่าง ๆ ช่วยเพิ่มพูนความรู้ด้านเทคโนโลยีสมัยใหม่ และเป็นพื้นฐานในการต่อยอดทักษะด้านการเขียนโปรแกรมและการพัฒนาระบบอัจฉริยะ เพื่อศึกษาต่อในสาขาวิศวกรรมคอมพิวเตอร์
+        </li>
+        <li>
+          <span class="timeline-year">30 เมษายน 2568</span>
+          ผ่านการอบรมหลักสูตรพลเมืองดิจิทัล (อุ่นใจไซเบอร์) ระดับ Fundamental Level เข้าร่วมการอบรมโครงการส่งเสริมการเรียนรู้หน้าที่พลเมืองดิจิทัล หลักสูตร “อุ่นใจไซเบอร์” สื่อการเรียนรู้เสริมทักษะทางดิจิทัล ระดับ Fundamental Level เมื่อวันที่ 30 เมษายน 2568 จัดโดยสำนักงานคณะกรรมการการศึกษาขั้นพื้นฐาน ร่วมกับหน่วยงานที่เกี่ยวข้อง โดยได้รับเกียรติบัตรจากการเข้าร่วมอบรม ทำให้ได้เรียนรู้การใช้เทคโนโลยีดิจิทัลอย่างเหมาะสมและปลอดภัย รวมถึงการตระหนักถึงความรับผิดชอบในโลกออนไลน์ ซึ่งเป็นพื้นฐานสำคัญสำหรับการศึกษาต่อด้านวิศวกรรมคอมพิวเตอร์
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- footer: ส่วนท้ายของหน้า ใช้ใส่ช่องทางติดต่อ -->
+  <footer class="site-footer">
+    <div class="container">ติดต่อ: tongkaewkantapat@gmail.com</div>
+  </footer>
+
 </body>
 </html>
