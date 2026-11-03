@@ -1,109 +1,315 @@
+/* =====================================================
+   วิธีอ่าน CSS:
+   ตัวเลือก { คุณสมบัติ: ค่า; }
+   เช่น .profile { padding: 3rem 0; }
+   = "ทุกแท็กที่มี class="profile" ให้เว้นช่องว่างด้านใน 3rem บน-ล่าง 0 ซ้าย-ขวา"
+
+   ข้อควรจำ: CSS อ่านจากบนลงล่าง ถ้าตั้งค่าซ้ำ บรรทัดหลังจะชนะ
+   ===================================================== */
+
+
+/* ===== สีหลัก (เปลี่ยนที่นี่ที่เดียว เปลี่ยนทั้งเว็บ) =====
+   :root = ระดับบนสุดของหน้า ตัวแปรที่ตั้งตรงนี้ทุกที่เรียกใช้ได้
+   --ชื่อ: ค่า;  คือการตั้งตัวแปร | เรียกใช้ด้วย var(--ชื่อ) */
 :root {
-    --blue: #2c5f8a;
-    --text: :#26323f;
-    --paper: #f5f7fa;
+  --navy: #1b2a41;   /* น้ำเงินเข้ม: สีหัวข้อ พื้นฟุตเตอร์ ปุ่มที่ถูกเลือก */
+  --blue: #2c5f8a;   /* น้ำเงินกลาง: สีรอง ป้ายหมวด กรอบโฟกัส */
+  --paper: #f5f7fa;  /* ขาวอมฟ้า: สีพื้นหลังหน้าเว็บ */
+  --line: #d9e0e8;   /* เทาอ่อน: สีเส้นขอบ */
+  --text: #26323f;   /* สีตัวหนังสือทั่วไป */
+  --muted: #5f6b7a;  /* เทา: ตัวหนังสือรอง */
+  --gold: #c9a24a;   /* ทอง: สีเน้นเล็กน้อย (เส้นใต้ จุดบนเส้นเวลา) */
 }
 
+/* body: ทั้งหน้าเว็บ */
 body {
-    font-family: "Noto Sans Thai", sans-serif;
-    color: var(--text);
-    background:  #fff;
-    line-height: 1.7;
+  font-family: "Noto Sans Thai", sans-serif; /* ฟอนต์หลัก ถ้าโหลดไม่ได้ใช้ฟอนต์ทั่วไปแทน */
+  color: var(--text);          /* สีตัวหนังสือ */
+  background: var(--paper);    /* สีพื้นหลัง */
+  line-height: 1.7;            /* ระยะห่างระหว่างบรรทัด (ภาษาไทยมีสระบนล่าง ต้องห่างหน่อย) */
 }
 
+
+/* ===== โปรไฟล์ ===== */
+
+/* พื้นขาวของส่วนโปรไฟล์ มีเส้นทองใต้ส่วน */
 .profile {
-    background: #fff;
-    border-bottom: 4px solid #FFC72C;
-    padding: 3rem 0;
+  background: #fff;
+  border-bottom: 4px solid var(--gold);  /* border = เส้นขอบ (ความหนา ชนิด สี) */
+  padding: 3rem 0;                       /* padding = ช่องว่างด้านใน | rem = หน่วยตามขนาดฟอนต์ */
 }
 
+/* รูปโปรไฟล์: ทำเป็นวงกลม */
 .profile-photo {
-    width: 100%;
-    max-width: 260px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 6px solid #FA4616;
-    border-color: #FA4616;
-    box-shadow: 0 0 0 3px #FFC72C;
-    background:#fff
+  width: 100%;                  /* กว้างเต็มคอลัมน์ ... */
+  max-width: 260px;             /* ... แต่ไม่เกิน 260 px */
+  aspect-ratio: 1 / 1;          /* ล็อกสัดส่วนเป็นจัตุรัส */
+  object-fit: cover;            /* ให้รูปเต็มกรอบโดยตัดส่วนเกินทิ้ง ไม่บีบให้เพี้ยน */
+  border-radius: 50%;           /* ทำมุมโค้งจนเป็นวงกลม */
+  border: 6px solid var(--line);
+  border-color: #FFC72C ;        /* บรรทัดนี้อยู่หลังสุด จึงชนะ: สีขอบจึงเป็นเขียว */
+  box-shadow: 0 0 0 2px var(--line);  /* เลื่อนแนวนอน เลื่อนแนวตั้ง blur spread ขอบนอกบางๆ อีกชั้น */
+  background: var(--line);      /* สีพื้นระหว่างรอรูปโหลด */
 }
 
-.profile-name {
-    color: black;
-    font-weight: 700;
-    margin-bottom: 0;
-}
+.profile-name { color: var(--navy); font-weight: 700; margin-bottom: 0; }  /* font-weight 700 = ตัวหนา | margin = ช่องว่างด้านนอก */
+.profile-sub  { color: var(--blue); font-weight: 500; margin-bottom: 1rem; }
 
-.profile-sub {
-    color: black;
-    font-weight: 500;
-    margin-bottom: 1rem;
-}
-
+/* รายการโรงเรียน/อายุ: จัดเป็นสองคอลัมน์ (หัวข้อ | ค่า) */
 .profile-info {
-    grid-template-columns: max-content 1fr;
-    gap: .25rem 1.25rem;
-    margin-bottom: 1rem;
+  display: grid;                              /* จัดเรียงแบบตาราง */
+  grid-template-columns: max-content 1fr;     /* คอลัมน์ซ้ายกว้างเท่าข้อความ คอลัมน์ขวาเอาที่เหลือ */
+  gap: .25rem 1.25rem;                        /* ช่องว่างระหว่างแถว | ระหว่างคอลัมน์ */
+  margin-bottom: 1rem;
+}
+.profile-info dt { color: var(--muted); font-weight: 500; }  /* dt = หัวข้อ สีเทา */
+.profile-info dd { margin: 0; }                              /* dd = ค่า ลบช่องว่างที่เบราว์เซอร์ใส่ให้เอง */
+.profile-about { color: var(--muted); max-width: 60ch; margin: 0; }  /* ch = ความกว้างของตัวอักษร 1 ตัว จำกัดไม่ให้บรรทัดยาวเกินอ่านยาก */
+
+
+/* ===== ผลงาน ===== */
+.works { padding: 3rem 0; }
+
+/* หัวข้อของแต่ละส่วน มีเส้นทองด้านซ้าย */
+.section-title {
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-left: .75rem;
+  border-left: 4px solid var(--gold);
 }
 
-.profile-info dt {
-    color: #7B8189;
-}
 
+/* ===== ปุ่มเลือกหมวด (CSS ล้วน) ===== */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* แถบปุ่ม: ลอยติดขอบบนตอนเลื่อน */
 .filter-bar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin-bottom: 1.5rem;
-    padding: .75rem 0;
-    background: #fff;
-    border-bottom: 1px solid #fff;
+  position: sticky;      /* ปกติอยู่ที่เดิม พอเลื่อนถึงขอบจอจะค้างไว้ */
+  top: 0;                /* ค้างที่ขอบบนสุด */
+  z-index: 10;           /* ลำดับชั้น: ตัวเลขมากอยู่เหนือ (ไม่ให้การ์ดมาทับ) */
+  display: flex;         /* จัดลูกๆ เรียงต่อกันเป็นแถว */
+  flex-wrap: wrap;       /* ถ้าไม่พอบรรทัด ให้ปุ่มลงบรรทัดใหม่ */
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  padding: .75rem 0;
+  background: var(--paper);  /* ใส่พื้นหลัง ไม่งั้นเห็นการ์ดทะลุขึ้นมาตอนเลื่อน */
+  border-bottom: 1px solid var(--line);
 }
 
+/* ป้ายปุ่มแต่ละอัน (แบบแคปซูล) */
 .filter-bar label {
-    padding: .4rem 1.25rem;
-    border: 1px solid #fff;
-    border-radius: 999px;
-    background: #fff;
-    color: #1b2a41;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background .15s, color .15s, border-color .15s;
+  padding: .4rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;      /* ค่ามากๆ ทำให้ปลายโค้งเต็มที่ เป็นทรงแคปซูล */
+  background: #FFC72C ;
+  color: var(--navy);
+  font-weight: 500;
+  cursor: pointer;           /* เมาส์เป็นรูปมือ */
+  transition: background .15s, color .15s, border-color .15s;  /* ให้สีเปลี่ยนแบบนุ่มนวล ไม่กระตุก */
+}
+.filter-bar label:hover { border-color: var(--blue); }  /* :hover = ตอนเอาเมาส์ชี้ */
+
+/* ปุ่มที่ถูกเลือก = สีน้ำเงินเข้ม
+   อ่านว่า: "ถ้า #cat-all ถูกติ๊ก (:checked) ให้ป้าย label ของมัน (ที่อยู่ใน .filter-bar ถัดลงไป) เปลี่ยนสี"
+   ~ = ตัวที่อยู่ถัดไปในระดับเดียวกัน | [for="..."] = เลือกด้วยค่าแอตทริบิวต์ */
+#cat-all:checked    ~ .filter-bar label[for="cat-all"],
+#cat-coding:checked ~ .filter-bar label[for="cat-coding"],
+#cat-media:checked  ~ .filter-bar label[for="cat-media"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
 }
 
-.filter-bar label:hover {
-    border-color: red;
+/* กรอบโฟกัสตอนกด Tab ด้วยคีย์บอร์ด (:focus-visible) ให้คนใช้คีย์บอร์ดรู้ว่าอยู่ตรงไหน */
+#cat-all:focus-visible    ~ .filter-bar label[for="cat-all"],
+#cat-coding:focus-visible ~ .filter-bar label[for="cat-coding"],
+#cat-media:focus-visible  ~ .filter-bar label[for="cat-media"] {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
 }
 
-#cat-all:check ~ .filter-bar label[for="cat-all"],
-#cat-media:checked ~ .filter-bar label[for="cat-media"],
-#cat-coding:checked ~ .filter-bar label[for="cat-coding"]
+/* ซ่อนการ์ดที่ไม่ใช่หมวดที่เลือก
+   อ่านว่า: "ถ้า #cat-coding ถูกติ๊ก ให้ซ่อน .work ที่ data-category ไม่ใช่ coding"
+   :not(...) = "ที่ไม่ใช่..." | display: none = ซ่อนจนไม่เหลือที่ว่าง
+   ไม่มีเงื่อนไขของ cat-all เพราะเลือก "ทั้งหมด" แล้วไม่ต้องซ่อนอะไร */
+#cat-coding:checked ~ .work-list .work:not([data-category="coding"]),
+#cat-media:checked  ~ .work-list .work:not([data-category="media"]) {
+  display: none;
+}
 
 
-#cat-all:focus-visible ~ .filter-bar label[for="cat-all"],
-#cat-media:focus-visible ~ .filter-bar label[for="cat-media"],
-#cat-coding:focus-visible ~ .filter-bar label[for="cat-coding"], {
-     outline: 3px solid #2c5f8a;
-     outline-offset: 2px;
+/* ===== การ์ดผลงาน (สื่อซ้าย ข้อมูลขวา) ===== */
+.work {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;                 /* มุมโค้ง */
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  animation: work-in .35s ease-out backwards;  /* เล่นแอนิเมชัน work-in 0.35 วินาที (ดู @keyframes ด้านล่าง) */
+}
+
+/* รูปและคลิปของผลงาน */
+.work-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;       /* ล็อกสัดส่วนแนวนอน ทุกการ์ดจะสูงเท่ากัน */
+  object-fit: cover;          /* ให้เต็มกรอบ ตัดส่วนเกินทิ้ง */
+  border-radius: 8px;
+  background: var(--line);
+}
+/* คลิปใช้ contain เพื่อไม่ให้ตัดภาพ (จะมีขอบดำถ้าสัดส่วนไม่ตรง) */
+.work-media.is-video { object-fit: contain; background: #0f1722; }
+
+/* ป้ายหมวดเล็กๆ (Coding / Media) */
+.work-tag {
+  display: inline-block;      /* ให้กำหนด padding ได้แต่ยังอยู่บรรทัดเดียวกัน */
+  padding: .1rem .75rem;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--blue);
+  font-size: .85rem;
+  font-weight: 500;
+}
+.work-title { color: var(--navy); font-size: 1.35rem; font-weight: 700; margin: .5rem 0; }
+.work-desc  { margin: 0; }
+
+/* แอนิเมชัน: เริ่มจากจางและต่ำลง 14 px (from) แล้วค่อยๆ ขึ้นมาตำแหน่งปกติและชัด (to) */
+@keyframes work-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ถ้าผู้ใช้ตั้งค่า "ลดการเคลื่อนไหว" ในเครื่อง ให้ปิดแอนิเมชัน */
+@media (prefers-reduced-motion: reduce) {
+  .work { animation: none; }
+}
+
+
+/* ===== ส่วนท้ายหน้า ===== */
+.site-footer {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;   /* จัดข้อความกึ่งกลาง */
+  padding: 1.25rem 0;
+}
+
+
+/* ===== เกี่ยวกับฉัน ===== */
+.about { padding: 3rem 0 0; }               /* padding ใส่ 3 ค่า = บน | ซ้าย-ขวา | ล่าง (ที่นี่ = เว้นบน 3rem ซ้าย-ขวา 0 ล่าง 0) */
+.about-text { max-width: 70ch; margin: 0; } /* จำกัดความยาวบรรทัดให้อ่านสบาย */
+
+
+/* ===== รางวัลและกิจกรรม (เส้นเวลา) ===== */
+.awards { padding: 0 0 3rem; }
+
+.timeline {
+  list-style: none;                      /* เอาจุดนำหน้าของ ul ออก */
+  margin: 0;
+  padding: 0 0 0 1.25rem;                /* เว้นด้านซ้ายไว้ให้เส้นกับจุด */
+  border-left: 2px solid var(--line);    /* เส้นแนวตั้งด้านซ้าย = เส้นเวลา */
+}
+.timeline li {
+  position: relative;                    /* ให้จุดที่ใช้ position: absolute อ้างอิงตำแหน่งจาก li นี้ */
+  padding: 0 0 1.25rem 1rem;
+}
+.timeline li:last-child { padding-bottom: 0; }   /* :last-child = ข้อสุดท้าย ไม่ต้องเว้นด้านล่าง */
+
+/* จุดทองบนเส้นเวลา สร้างด้วย ::before (องค์ประกอบที่ CSS เสกขึ้นก่อนเนื้อหาของ li)
+   ต้องมี content: "" เสมอ ไม่งั้นจะไม่แสดง */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: .55rem;
+  left: calc(-1.25rem - 6px);   /* calc() = คำนวณ: ถอยไปทางซ้ายให้จุดอยู่กลางเส้น */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;           /* วงกลม */
+  background: var(--gold);
+}
+.timeline-year {
+  display: block;               /* ให้ปีขึ้นบรรทัดใหม่ แล้วข้อความตามหลังอยู่บรรทัดถัดไป */
+  color: var(--blue);
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   ส่วนที่เพิ่มใหม่: ปุ่มไปหน้าแสดงผลงาน + หน้าแสดงผลงาน
+   ===================================================== */
+
+/* ===== ปุ่ม "ดูรายละเอียด" ในการ์ดผลงาน (เป็นลิงก์ a ที่แต่งให้เหมือนปุ่ม) ===== */
+.btn-detail {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem 1.25rem;
+  border: 1px solid var(--navy);
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 500;
+  text-decoration: none;         /* เอาเส้นใต้ของลิงก์ออก */
+  transition: background .15s, color .15s;
+}
+.btn-detail:hover,
+.btn-detail:focus-visible {      /* ชี้เมาส์ หรือกด Tab มาโดน = กลับสี */
+  background: var(--navy);
+  color: #fff;
+}
+.btn-detail:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* ===== แถบ breadcrumb บนหน้าแสดงผลงาน ===== */
+.page-top {
+  position: sticky;              /* ลอยค้างบนสุด ให้กดย้อนกลับได้ตลอด */
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  padding: .75rem 0;
+}
+.breadcrumb {
+  margin: 0;
+  font-weight: 500;
+  /* ตัวแปรของ Bootstrap: เปลี่ยนสีให้เข้ากับโทนเว็บเรา */
+  --bs-breadcrumb-divider-color: var(--muted);
+  --bs-breadcrumb-item-active-color: var(--navy);
+}
+.breadcrumb a { color: var(--blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ===== เนื้อหาหน้าแสดงผลงาน ===== */
+.detail { padding: 2rem 0 3rem; }
+.detail-body {
+  max-width: 900px;              /* จำกัดความกว้าง ชิดซ้าย อ่านสบาย */
+  animation: work-in .35s ease-out backwards;   /* ใช้แอนิเมชันเดิมจากด้านบน */
+}
+.detail-body .work-media { margin-bottom: 1.5rem; }
+.detail-title { color: var(--navy); font-size: 1.75rem; font-weight: 700; margin: .5rem 0 1rem; }
+
+.detail-info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .25rem 1.25rem;
+  margin: 1.5rem 0 0;
+}
+.detail-info dt { color: var(--muted); font-weight: 500; }
+.detail-info dd { margin: 0; }
+
+/* ===== ลิงก์ล่างสุด (Certificate ฯลฯ) ===== */
+.detail-links { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.link-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.link-list a {
+  display: block;
+  padding: .65rem 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--navy);
+  font-weight: 500;
+  text-decoration: none;
+}
+.link-list a::after { content: " ↗"; color: var(--blue); }   /* ลูกศรบอกว่าเปิดแท็บใหม่ */
+.link-list a:hover { border-color: var(--blue); }
+
+@media (prefers-reduced-motion: reduce) {
+  .detail-body { animation: none; }
 }
